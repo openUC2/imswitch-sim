@@ -21,6 +21,37 @@ and review the napari docs for plugin developers:
 https://napari.org/stable/plugins/index.html
 -->
 
+## Usage
+
+To inclue this into the ImSwitch installation, you have to add the following items to your config:
+
+```json
+"availableModules": "imswitch_sim"
+
+  "imswitch_sim": {
+    "monitorIdx": 2,
+    "width": 1080,
+    "height": 1920,
+    "wavelength": 0,
+    "pixelSize": 0,
+    "angleMount": 0,
+    "patternsDirWin": "C:\\Users\\wanghaoran\\Documents\\ImSwitchConfig\\imcontrol_slm\\488\\",
+    "patternsDir": "/users/bene/ImSwitchConfig/imcontrol_sim/488",
+    "isSimulation": 0,
+    "nRotations": 3,
+    "nPhases": 3,
+    "isFastAPISIM": 1,
+    "simPixelsize": 1,
+    "simNA": 0,
+    "simN": 0,
+    "simETA": 0,
+    "fastAPISIM_host": "192.168.0.1",
+    "fastAPISIM_port": 0,
+    "tWaitSequence": 0
+  }
+
+```
+
 ## Installation
 
 You can install `imswitch-sim` via [pip]:

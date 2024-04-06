@@ -6,12 +6,12 @@ import re
 import numpy as np
 from PIL import Image
 from scipy import signal as sg
-
+from imswitch.imcontrol.view.guitools.ViewSetupInfo import ViewSetupInfo as SetupInfo
 from imswitch.imcommon.framework import Signal, SignalInterface
 from imswitch.imcommon.model import initLogger
 
 
-class SIMManager(SignalInterface):
+class imswitch_sim_manager(SignalInterface):
     sigSIMMaskUpdated = Signal(object)  # (maskCombined)
 
     def __init__(self, simInfo, *args, **kwargs):
@@ -19,6 +19,7 @@ class SIMManager(SignalInterface):
         self.__logger = initLogger(self)
 
         if simInfo is None:
+            # import imswitch_sim_info.py
             return
 
         self.__simInfo = simInfo
@@ -37,15 +38,10 @@ class SIMManager(SignalInterface):
         self.simN = self.__simInfo.simN # refr
         self.simETA = self.__simInfo.simETA
 
-
-
-        self.isHamamatsuSLM = self.__simInfo.isHamamatsuSLM
-
         # Load all patterns
         if type(self.__patternsDir) is not list:
             self.__patternsDir = [self.__patternsDir]
-        self.allPatterns = self.loadPatterns(self.__patternsDir)
-
+        
         # define paramerters for fastAPI (optional)
         fastAPISIM_host = self.__simInfo.fastAPISIM_host
         fastAPISIM_port = self.__simInfo.fastAPISIM_port
