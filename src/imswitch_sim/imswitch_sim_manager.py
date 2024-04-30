@@ -14,12 +14,13 @@ from imswitch.imcommon.model import initLogger
 class imswitch_sim_manager(SignalInterface):
     sigSIMMaskUpdated = Signal(object)  # (maskCombined)
 
+            sigSIMMaskUpdated = Signal(object)  # (maskCombined)
+
     def __init__(self, simInfo, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__logger = initLogger(self)
 
         if simInfo is None:
-            # import imswitch_sim_info.py
             return
 
         self.__simInfo = simInfo
@@ -28,7 +29,6 @@ class imswitch_sim_manager(SignalInterface):
         self.__angleMount = self.__simInfo.angleMount
         self.__simSize = (self.__simInfo.width, self.__simInfo.height)
         self.__patternsDir = self.__simInfo.patternsDir
-        self.isSimulation = self.__simInfo.isSimulation
         self.nRotations = self.__simInfo.nRotations
         self.nPhases = self.__simInfo.nPhases
         self.simMagnefication = self.__simInfo.nPhases
@@ -41,7 +41,7 @@ class imswitch_sim_manager(SignalInterface):
         # Load all patterns
         if type(self.__patternsDir) is not list:
             self.__patternsDir = [self.__patternsDir]
-        
+
         # define paramerters for fastAPI (optional)
         fastAPISIM_host = self.__simInfo.fastAPISIM_host
         fastAPISIM_port = self.__simInfo.fastAPISIM_port

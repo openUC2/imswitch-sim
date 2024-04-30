@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QTabWidget, QWidget,
 class imswitch_sim_widget(NapariHybridWidget):
     """ Widget containing sim interface. """
 
+
     sigSIMMonitorChanged = QtCore.Signal(int)  # (monitor)
     sigPatternID = QtCore.Signal(int)  # (display pattern id)
 
@@ -97,14 +98,22 @@ class imswitch_sim_widget(NapariHybridWidget):
             "Enable Reconstruction", "Enable Record Reconstruction",
             "Enable Record RAW", "Enable Laser 488", "Enable Laser 635",
             "Enable TimeLapse", "Enable Z-stack", "Use GPU?",
+            "Selected Path", "C:\\Users\\admin\\Desktop\\Timelapse\\",
             
         ]
         self.checkbox_reconstruction = QCheckBox(checkboxes[0])
         self.checkbox_record_reconstruction = QCheckBox(checkboxes[1])
         self.checkbox_record_raw = QCheckBox(checkboxes[2])
+        self.path_label = QLabel(checkboxes[8])
+        self.path_edit = QLineEdit(checkboxes[9])
+        self.openFolderButton = guitools.BetterPushButton('Open')
         layout.addWidget(self.checkbox_reconstruction)
         layout.addWidget(self.checkbox_record_reconstruction)
         layout.addWidget(self.checkbox_record_raw)
+        layout.addWidget(self.path_label)
+        layout.addWidget(self.path_edit)        
+        layout.addWidget(self.openFolderButton)
+
         
         tab.setLayout(layout)
         return tab
@@ -276,6 +285,8 @@ class imswitch_sim_widget(NapariHybridWidget):
     def getTimelapseParameters(self):
         return (np.float32(self.period_textedit.text()), np.float32(self.frames_textedit.text()))
     
+    def getRecFolder(self):
+        return self.path_edit.text()
 
 # Copyright (C) 2020-2023 ImSwitch developers
 # This file is part of ImSwitch.
