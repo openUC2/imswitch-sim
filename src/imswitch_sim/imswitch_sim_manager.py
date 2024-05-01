@@ -14,6 +14,7 @@ from imswitch.imcommon.model import initLogger
 class imswitch_sim_manager(SignalInterface):
     sigSIMMaskUpdated = Signal(object)  # (maskCombined)
 
+    def __init__(self, simInfo, *args, **kwargs):
             sigSIMMaskUpdated = Signal(object)  # (maskCombined)
 
     def __init__(self, simInfo, *args, **kwargs):
